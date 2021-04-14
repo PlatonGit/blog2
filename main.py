@@ -18,7 +18,14 @@ def main():
    post_controller = PostController(post_repo)
    
    app = StartMenu(user_controller, profile_controller, post_controller)
-   app.display()
+   
+   try:
+      app.display()
+   except UserExitException:
+      print('\n\n=================================================\nExiting the programm; closing connection with database.\nThank you for using this software and goodbye!')
+      db = DbService()
+      db.close()
+
             
 
 if __name__  == '__main__':

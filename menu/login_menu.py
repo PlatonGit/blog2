@@ -49,9 +49,10 @@ class LoginMenu(BaseMenu):
                     self.__post_controller
                 )                
                 next_menu.display()
+                return
 
             elif context['status'] == 'fail':
-                print('Login failed; incorect username or password were given.')  
+                print('\n>>> Login failed; incorect username or password were given <<<')  
                 
                 selected_option = self.input_secure_wrap(get_input)
                 

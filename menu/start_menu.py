@@ -1,5 +1,5 @@
 from utils import get_option_input, raise_exception
-from custom_exceptions import UserInputOptionException
+from custom_exceptions import UserInputOptionException, UserExitException
 from menu import BaseMenu
 from menu.login_menu import LoginMenu 
 from menu.registration_menu import RegistrationMenu 
@@ -11,7 +11,7 @@ class StartMenu(BaseMenu):
     __next_menus = {
         '1' : LoginMenu,
         '2' : RegistrationMenu,
-        '3' : lambda *_: raise_exception(KeyboardInterrupt)
+        '3' : lambda *_: raise_exception(UserExitException)
     }
 
 

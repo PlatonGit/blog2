@@ -17,5 +17,15 @@ def get_option_input():
     return input_function
 
 
+def username_input(string):
+    result = input(string)
+    if not result[0].isalpha() or len(result) < 5:
+        pass
+    return result
+
+
+
+
+
 def raise_exception(ex):
     raise ex

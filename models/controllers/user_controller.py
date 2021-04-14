@@ -30,7 +30,6 @@ class UserController:
         
         result['status'] = 'fail' if user is None or profile is None else 'success'
         result['user'] = user
-        result['profile'] = profile
 
         return result
 

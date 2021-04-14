@@ -31,6 +31,27 @@ class ProfileRepository:
             raise RepositoryError
 
     
+    def create_empty_profile(self):
+        """
+        Creates empty profile and returns it's id.
+        """
+
+        # try:
+        #     query = "INSERT INTO profile () VALUES ();"
+        #     self.__db.execute(query)
+
+        #     query = "SELECT max(id) as id FROM profile;"
+
+        #     if self.__db.execute(query):
+        #         pass
+        #     if self.__db.cursor.rowcount == 1:
+        #         return self.__db.cursor.fetchone()['id']
+        #     else:
+        #         return None
+        # except Exception as ex:
+        #     pass
+
+
     def select_profile(self, id):
         """
         Returns Profile's instance from database with corresponding id.

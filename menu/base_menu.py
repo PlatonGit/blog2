@@ -1,4 +1,5 @@
-from custom_exceptions import UserInputOptionException
+from custom_exceptions import *
+from utils import get_option_input
 
 
 class BaseMenu:
@@ -15,10 +16,10 @@ class BaseMenu:
             except UserInputOptionException:
                 print('\n>>> Invalid option id <<<')
             except KeyboardInterrupt:
-                print('\n\n>>> Programm was interrupted <<<')
-                exit(0)
+                print('\n\n\n>>> Programm was interrupted <<<')
+                raise KeyboardInterrupt
             except Exception as ex:
-                print('>>> Error:', ex, '<<<')
+                print('\n>>> Error:', ex, '<<<')
 
 
     def display(self):

@@ -16,3 +16,11 @@ class ExitFromMenuException(Exception):
 
 class UserExitException(KeyboardInterrupt):
     pass
+
+
+class InvalidUsernameException(Exception):
+    pass
+
+
+class InvalidPasswordException(Exception):
+    pass
