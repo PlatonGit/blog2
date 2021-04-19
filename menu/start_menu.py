@@ -9,9 +9,9 @@ class StartMenu(BaseMenu):
     __menu_heading = '\n' + '=' * 10 + ' | Start Menu | ' + '=' * 10
     __options = '[1] Log in\n[2] Sign up\n[3] Exit'
     __next_menus = {
-        '1' : LoginMenu,
-        '2' : RegistrationMenu,
-        '3' : lambda *_: raise_exception(UserExitException)
+        '1': LoginMenu,
+        '2': RegistrationMenu,
+        '3': lambda *_: raise_exception(UserExitException)
     }
 
 

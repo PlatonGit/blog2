@@ -20,7 +20,6 @@ class LoginMenu(BaseMenu):
         }
 
 
-    
     def display(self):
         input_func = get_option_input()
 
@@ -32,12 +31,12 @@ class LoginMenu(BaseMenu):
             if selected_option not in self.__next_menus.keys():
                 raise UserInputOptionException
             return selected_option
-
-        while True:
+        
+        while True:    
             print(self.__menu_heading)
-            
-            username = input('Enter your username: ')
-            password = input('Enter your password: ')
+
+            username = self.input_secure_wrap(lambda *_: input('Enter your account\'s username: '))
+            password = self.input_secure_wrap(lambda *_: input('Enter your account\'s password: '))
 
             context = self.__user_controller.read_user_login_info(username, password)
 

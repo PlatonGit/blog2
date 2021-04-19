@@ -26,37 +26,41 @@ class ProfileRepository:
             )
             self.__db.execute(query)
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
     
-    def create_empty_profile(self):
+    def create_blank_profile(self):
         """
-        Creates empty profile and returns it's id.
+        Creates an empty profile and returns it's id.
         """
 
-        # try:
-        #     query = "INSERT INTO profile () VALUES ();"
-        #     self.__db.execute(query)
+        try:
+            # creating a blank profile
+            query = "INSERT INTO profile () VALUES ();"
+            self.__db.execute(query)
 
-        #     query = "SELECT max(id) as id FROM profile;"
-
-        #     if self.__db.execute(query):
-        #         pass
-        #     if self.__db.cursor.rowcount == 1:
-        #         return self.__db.cursor.fetchone()['id']
-        #     else:
-        #         return None
-        # except Exception as ex:
-        #     pass
+            # getting it's id
+            query = "SELECT max(id) as id FROM profile;"
+            self.__db.execute(query)
+            
+            # returning the id if one was found
+            if self.__db.cursor.rowcount == 1:
+                return self.__db.cursor.fetchone()['id']
+            else:
+                return None
+      
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
+            raise RepositoryError
 
 
     def select_profile(self, id):
         """
         Returns Profile's instance from database with corresponding id.
         :param id: - int.
-        :return User: - successful select means that there is a record with corresponding id.
+        :return User: - successful selection means that there is a record with corresponding id.
         :raise RepositoryError: - error occured while working with database.
         """
         
@@ -69,8 +73,8 @@ class ProfileRepository:
             else:
                 return None
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
 
@@ -88,12 +92,15 @@ class ProfileRepository:
                 first_name = profile.first_name,
                 second_name = profile.second_name,
                 last_name = profile.last_name,
-                age = profile.age
+                age = profile.age if profile.age is not None else 'NULL'
             )
+            
             self.__db.execute(query)
+            
+            return True
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
 
@@ -108,7 +115,7 @@ class ProfileRepository:
             query = "DELETE FROM profile WHERE id = %d" % id
             self.__db.execute(query)
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 

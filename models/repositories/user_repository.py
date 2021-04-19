@@ -28,8 +28,8 @@ class UserRepository:
             )
             self.__db.execute(query)
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
 
@@ -50,8 +50,8 @@ class UserRepository:
             else:
                 return None
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
 
@@ -84,11 +84,30 @@ class UserRepository:
                 raise RepositoryError
             
             return (None, None)
-        except Exception as ex:
-            print(ex)
-            raise RepositoryError
-            
 
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
+            raise RepositoryError
+
+
+    def select_user_by_username(self, username):
+        """
+        Searches for users with a username that corresponds to the one given in the function call.
+        :result: - User() / None
+        """
+        try:
+            query = f"SELECT * FROM blog_user WHERE username = '{username}'"
+            self.__db.execute(query)
+            if self.__db.cursor.rowcount > 0:
+                return User.from_dict(self.__db.cursor.fetchone())
+            else:
+                return None
+
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
+            raise RepositoryError
+
+            
     def update_user(self, user: User):
         """
         Updates User's instance with corrsponding description and / or data.
@@ -106,8 +125,8 @@ class UserRepository:
             )
             self.__db.execute(query)
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
 
@@ -122,8 +141,8 @@ class UserRepository:
             query = "DELETE FROM blog_user WHERE id = %d" % id
             self.__db.execute(query)
 
-        except Exception as ex:
-            print(ex)
+        except Exception as error:
+            print(f'\n>>> Error: {error} <<<')
             raise RepositoryError
 
 

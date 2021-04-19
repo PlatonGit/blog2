@@ -7,8 +7,12 @@ class ProfileController:
     
     def create_profile(self, profile):
         return self.__profile_repo.create_profile(profile)
-
     
+
+    def create_blank_profile(self):
+        return self.__profile_repo.create_blank_profile()
+    
+
     def read_profile(self, id):
         return self.__profile_repo.select_profile(id)
 

@@ -30,8 +30,13 @@ class UserController:
         
         result['status'] = 'fail' if user is None or profile is None else 'success'
         result['user'] = user
+        result['profile'] = profile
 
         return result
+
+
+    def read_user_by_username(self, username):
+        return self.__user_repo.select_user_by_username(username)
 
 
     def update_user(self, user: User):

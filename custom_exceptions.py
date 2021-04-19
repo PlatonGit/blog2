@@ -24,3 +24,11 @@ class InvalidUsernameException(Exception):
 
 class InvalidPasswordException(Exception):
     pass
+
+
+class InvalidNameException(Exception):
+    pass
+
+
+class InvalidAgeException(Exception):
+    pass
